@@ -6,8 +6,25 @@ A small module that logs basic user information and errors in a csv file. Additi
 - logger: Way to save the information Eg. CsvLogger saves in csv format. MysqlLogger Saves in database etc.
 
 ## How to use ?
+First include/require all the required files and start session. To include all files do this:
+```php
+session_start();
+//load log configuration
+require_once 'LogConfig.php';
 
-### User logs
+// load base log and types of log
+require_once 'Log.php';
+require_once 'UserLog.php';
+require_once 'ErrorLog.php';
+
+//load base Logger and types of Logger
+require_once 'Logger.php';
+require_once 'CsvLogger.php';
+require_once 'AnyOtherLogger.php';
+require_once 'LoggerFactory.php';
+```
+
+### Writing User logs
 ```php
 // in any page insert this code to log basic user information
 $config   = new LogConfig();
@@ -17,7 +34,7 @@ $logger->writeLog( $userlog ); // Write User Log
 
 ```
 
-### Error logs
+### Writing Error logs
 ```php
 // in any catch statement insert this code to log unaddressed exceptions encountered
 $config   = new LogConfig();
