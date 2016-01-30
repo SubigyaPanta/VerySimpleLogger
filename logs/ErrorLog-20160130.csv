@@ -1,0 +1,3 @@
+code,message,stacktrace
+1010,"This message will be logged","#0 {main}"
+1010,"This message will be logged","#0 {main}"
