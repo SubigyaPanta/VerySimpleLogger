@@ -1,6 +1,6 @@
 <?php
 
-class AnyOtherLogger extends Logger
+class AnyOtherLogger implements Logger
 {
     public function writeLog(\Log $log)
     {

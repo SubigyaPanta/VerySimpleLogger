@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * A class that wraps PHP exceptions so that all unattended exceptions during 
+ * execution of the program can be recorded/logged.
+ */
 Class ErrorLog implements Log
 {
     public $message;

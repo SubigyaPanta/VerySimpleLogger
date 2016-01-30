@@ -14,16 +14,16 @@ require_once 'CsvLogger.php';
 require_once 'AnyOtherLogger.php';
 require_once 'LoggerFactory.php';
 
+$config = new LogConfig(); // load configuration
 try{
-    $config     = new LogConfig();
-    $userlog    = new UserLog();
-    $logger     = LoggerFactory::getLogger($config->loggerType);
-    $logger->writeLog( $userlog );
+    $userlog    = new UserLog(); // Create User Log object
+    $logger     = LoggerFactory::getLogger($config->loggerType); // get the type of logger you want
+    $logger->writeLog( $userlog ); // Write User Log
     
     throw new Exception( 'This message will be logged', '1010' );
 } 
 catch (Exception $ex) {
-    $errorLog   = new ErrorLog($ex);
-    $logger     = LoggerFactory::getLogger();
-    $logger->writeLog( $errorLog );
+    $errorLog   = new ErrorLog($ex); // Create Error log object
+    $logger     = LoggerFactory::getLogger($config->loggerType);
+    $logger->writeLog( $errorLog ); // Write Error Log
 }

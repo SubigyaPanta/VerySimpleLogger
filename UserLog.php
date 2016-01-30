@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * A class that creates a user log containing session id, timestamp, pages
+ * browsed, ip, and useragent info.
+ */
 class UserLog implements Log
 {
     public $session_id;
@@ -33,7 +36,7 @@ class UserLog implements Log
             return $_SESSION[ 'hash_sess_id' ];
         }
         else {
-            $_SESSION['hash_sess_id']  = md5( rand(1000, 9999).gmdate('Ymd').rand(1000, 9999).date('His') );
+            $_SESSION['hash_sess_id']  = md5( rand(1000, 9999).gmdate('Ymd').rand(1000, 9999).date('His') ); // just creating a unique hash
             return $_SESSION['hash_sess_id'];
         }
     }

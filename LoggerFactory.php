@@ -3,10 +3,13 @@
 abstract class LoggerFactory
 {
     /**
+     * To get the type of logger you want. 
+     * If you want to add a new logging method, for eg, using Mysql database,
+     * create a new class MysqlLogger which extends Logger and 
+     * add a "case" mysql. Thats it.
      * 
      * @param type $type
      * @return \Logger
-     * @throws UnexpectedValueException
      */
     public static function getLogger( $type = 'csv' )
     {
@@ -16,12 +19,12 @@ abstract class LoggerFactory
                     $logger = new CsvLogger();
                 break;
             
-            case 'mysql':
+            case 'other':
                     $logger = new AnyOtherLogger();
                 break;
             
             default:
-                throw new UnexpectedValueException( 'Invalid Logger type requested' );
+                $logger = new CsvLogger();
         }
         
         return $logger;

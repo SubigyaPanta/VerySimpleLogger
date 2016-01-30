@@ -1,6 +1,10 @@
 <?php
 
-class CsvLogger extends Logger
+/**
+ * A class that writes any Log (UserLog, ErrorLog or any log which implements 
+ * interface Log) to a csv file.
+ */
+class CsvLogger implements Logger
 {
     /**
      * CSV line endings may behave differently depending on Operating System
@@ -20,13 +24,14 @@ class CsvLogger extends Logger
         ksort( $logArray );
         
         if ( file_exists( $filename ) ) {
+            // After first entry is done, we simple append the contents
             $handle = fopen( $filename, "a+" );
-            // no need to read title  $title  = fgetcsv($handle);
             // write log body
             fputcsv( $handle, $logArray );
             fclose( $handle );
         }
         else{
+            // For first entry, we need titles in CSV file
             $title  = array_keys( $logArray );
             $handle = fopen( $filename,"a+" );
             fputcsv( $handle, $title );
